@@ -58,7 +58,7 @@ export class AppService {
       .subscribe(
         data => {
         	Cookie.delete('access_token');
-        	window.location.href = 'http://localhost:8089/';
+        	window.location.href = 'http://78.47.114.254:8089/';
         	},
         err => alert('Could not logout')
       );
