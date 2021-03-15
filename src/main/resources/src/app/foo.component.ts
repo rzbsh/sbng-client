@@ -20,7 +20,7 @@ import { AppService, Foo } from './app.service'
 
 export class FooComponent {
     public foo = new Foo(1, 'sample foo');
-    private foosUrl = 'http://localhost:8081/resource-server/api/foos/';
+    private foosUrl = 'http://78.47.114.254:8081/resource-server/api/foos/';
 
     constructor(private _service: AppService) { }
 
