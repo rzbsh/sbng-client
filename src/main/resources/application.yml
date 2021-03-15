@@ -5,27 +5,27 @@ zuul:
     auth/code:
       path: /auth/code/**
       sensitiveHeaders:
-      url: http://localhost:8083/auth/realms/myservice/protocol/openid-connect/auth
+      url: http://78.47.114.254:8083/auth/realms/myservice/protocol/openid-connect/auth
     auth/token:
       path: /auth/token/**
       sensitiveHeaders:
-      url: http://localhost:8083/auth/realms/myservice/protocol/openid-connect/token
+      url: http://78.47.114.254:8083/auth/realms/myservice/protocol/openid-connect/token
     auth/refresh/revoke:
       path: /auth/refresh/revoke/**
       sensitiveHeaders:
-      url: http://localhost:8083/auth/realms/myservice/protocol/openid-connect/logout
+      url: http://78.47.114.254:8083/auth/realms/myservice/protocol/openid-connect/logout
     auth/refresh:
       path: /auth/refresh/**
       sensitiveHeaders:
-      url: http://localhost:8083/auth/realms/myservice/protocol/openid-connect/token
+      url: http://78.47.114.254:8083/auth/realms/myservice/protocol/openid-connect/token
     auth/redirect:
       path: /auth/redirect/**
       sensitiveHeaders:
-      url: http://localhost:8089/
+      url: http://78.47.114.254:8089/
     auth/resources:
       path: /auth/resources/**
       sensitiveHeaders:
-      url: http://localhost:8083/auth/resources/
+      url: http://78.47.114.254:8083/auth/resources/
     
   Servlet30WrapperFilter:
     pre:
