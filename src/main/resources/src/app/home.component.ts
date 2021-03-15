@@ -31,7 +31,7 @@ export class HomeComponent {
     }
 
     login() {
-        window.location.href = 'http://localhost:8089/auth/code';
+        window.location.href = 'http://78.47.114.254:8089/auth/code';
     }
 
     logout() {
