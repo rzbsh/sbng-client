@@ -21,7 +21,7 @@ import com.netflix.zuul.context.RequestContext;
 public class CustomPreZuulFilter extends ZuulFilter {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	private final static String REDIRECT_URL = "http://localhost:8089/auth/redirect/";
+	private final static String REDIRECT_URL = "http://78.47.114.254:8089/auth/redirect/";
 	private final static String CLIENT_ID = "newClient";
 	private final static String CLIENT_SECRET = "newClientSecret";
 
