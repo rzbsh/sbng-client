@@ -14,7 +14,7 @@
         <relativePath />
     </parent>
 	
-		<dependencies>
+	<dependencies>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -26,7 +26,7 @@
 			<artifactId>spring-cloud-starter-netflix-zuul</artifactId>
             <version>${netflix-zuul.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
@@ -50,8 +50,8 @@
 				<version>1.7.5</version>
 
 				<configuration>
-					<nodeVersion>v10.15.3</nodeVersion>
-					<npmVersion>6.4.1</npmVersion>
+					<nodeVersion>v14.16.0</nodeVersion>
+					<npmVersion>6.14.11</npmVersion>
 					<workingDirectory>src/main/resources</workingDirectory>
 				</configuration>
 
@@ -107,8 +107,7 @@
                 </execution>
             </executions>
         </plugin>
-			  
-			
+
 		</plugins>
 
 		  <resources>

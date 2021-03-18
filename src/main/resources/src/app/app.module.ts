@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home.component';
 import { FooComponent } from './foo.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { FooComponent } from './foo.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: '**', component: HomeComponent }], { onSameUrlNavigation: 'reload' })
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

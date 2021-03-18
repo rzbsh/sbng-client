@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Cookie } from 'ng2-cookies';
+import { CookieService } from 'ngx-cookie-service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -15,8 +15,12 @@ export class Foo {
 @Injectable()
 export class AppService {
 
+  storage: Storage = sessionStorage;
+
   constructor(
-    private _http: HttpClient, private router: Router) { }
+    private _http: HttpClient,
+	private router: Router,
+	private cookieService: CookieService) { }
 
   retrieveToken() {
     let headers = new HttpHeaders({
@@ -31,34 +35,41 @@ export class AppService {
 
   saveToken(token) {
     var expireDate = new Date().getTime() + (1000 * token.expires_in);
-    Cookie.set("access_token", token.access_token, expireDate);
-    console.log('Obtained Access token');
+    //Cookie.set("access_token", token.access_token, expireDate);
+    this.cookieService.set("access_token", token.access_token, expireDate);
+    //this.storage.setItem('token', 'test: '+token.access_token);
+
+    alert('Saved Access token');
     this.router.navigate(['/']);
   }
 
   getResource(resourceUrl): Observable<any> {
     var headers = new HttpHeaders({
       'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
-      'Authorization': 'Bearer ' + Cookie.get('access_token')
+      'Authorization': 'Bearer ' + this.cookieService.get('access_token')
     });
+    alert("Access Token: " + this.cookieService.get('access_token'));
+    //alert(this.storage.getItem('token'))
+
     return this._http.get(resourceUrl, { headers: headers })
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   checkCredentials() {
-    return (Cookie.check('access_token'));
+    alert('Check Credentials: ' + this.cookieService.check('access_token'));
+    return (this.cookieService.check('access_token'));
   }
 
   logout() {
     let headers = new HttpHeaders({
       'Content-type': 'application/x-www-form-urlencoded; charset=utf-8'
     });
-    
+
     this._http.post('auth/refresh/revoke', {}, { headers: headers })
       .subscribe(
         data => {
-        	Cookie.delete('access_token');
-        	window.location.href = 'http://78.47.114.254:8089/';
+        	this.cookieService.delete('access_token');
+        	window.location.href = 'http://localhost:8089/';
         	},
         err => alert('Could not logout')
       );

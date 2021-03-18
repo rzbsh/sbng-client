@@ -8,8 +8,8 @@ import { AppService } from './app.service'
     <button *ngIf="!isLoggedIn" class="btn btn-primary" (click)="login()" type="submit">Login</button>
     <div *ngIf="isLoggedIn" class="content">
         <span>Welcome !!</span>
-        <a class="btn btn-default pull-right"(click)="logout()" href="#">Logout</a> <br/><br/>
-        <a class="btn btn-default pull-right"(click)="refreshAccessToken()" href="#">Refresh Token</a>
+        <a class="btn btn-secondary float-right"(click)="logout()" href="#">Logout</a> <br/><br/>
+        <a class="btn btn-secondary float-right"(click)="refreshAccessToken()" href="#">Refresh Token</a>
         <br/>
         <foo-details></foo-details>
     </div>

@@ -25,9 +25,10 @@ public class CustomPostZuulFilter extends ZuulFilter {
 	@Override
 	public Object run() {
 		final RequestContext ctx = RequestContext.getCurrentContext();
-		logger.info("in zuul filter " + ctx.getRequest().getRequestURI());
+		//logger.info("in zuul filter " + ctx.getRequest().getRequestURI());
 
 		final String requestURI = ctx.getRequest().getRequestURI();
+		logger.info(String.format("%s request to %s", ctx.getRequest().getMethod(), requestURI));
 
 		try {
 			Map<String, List<String>> params = ctx.getRequestQueryParams();

@@ -28,10 +28,11 @@ public class CustomPreZuulFilter extends ZuulFilter {
 	@Override
 	public Object run() {
 		final RequestContext ctx = RequestContext.getCurrentContext();
-		logger.info("in zuul filter URI:" + ctx.getRequest().getRequestURI());
+		//logger.info("in zuul filter URI:" + ctx.getRequest().getRequestURI());
 
 		final HttpServletRequest req = ctx.getRequest();
 		String requestURI = req.getRequestURI();
+		logger.info(String.format("%s request to %s; URI: %s", req.getMethod(), req.getRequestURL().toString(), requestURI));
 
 		if (requestURI.contains("auth/code")) {
 			Map<String, List<String>> params = ctx.getRequestQueryParams();
@@ -68,13 +69,16 @@ public class CustomPreZuulFilter extends ZuulFilter {
 
 	private String extractCookie(HttpServletRequest req, String name) {
 		final Cookie[] cookies = req.getCookies();
+		logger.info(String.format("Cookie: %s", name));
 		if (cookies != null) {
 			for (int i = 0; i < cookies.length; i++) {
 				if (cookies[i].getName().equalsIgnoreCase(name)) {
+					logger.info("Cookie found");
 					return cookies[i].getValue();
 				}
 			}
 		}
+		logger.info("Cookie not found");
 		return null;
 	}
 
@@ -111,12 +115,12 @@ public class CustomPreZuulFilter extends ZuulFilter {
 
 	@Override
 	public int filterOrder() {
-		return FilterConstants.PRE_DECORATION_FILTER_ORDER + 1;
+		return FilterConstants.PRE_DECORATION_FILTER_ORDER - 1;
 	}
 
 	@Override
 	public String filterType() {
-		return "pre";
+		return FilterConstants.PRE_TYPE;
 	}
 
 }
